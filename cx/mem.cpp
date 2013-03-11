@@ -19,7 +19,6 @@ void* Memory::Allocate(size_t sizetype) {
     //the pointer is used to initialize the pools if needed, then called again
     //to hold the pointer being used. If deque returned the pointer it was popping
     //we wouldn't need to do this! :(
-    //p.s. It's not very good practice :P
     chunkFreeIter = chunkFree.find(sizetype); //check if free pointers available for sizetype
 
     if(chunkFreeIter == chunkFree.end()) { //if free chunk queue does not exist for size...
@@ -53,6 +52,8 @@ void Memory::Free(void* ptr, size_t sizetype) {
 
 void* Memory::ExpandPool(size_t sizetype, size_t sizepool = CXPOOLSIZE) {
     poolListIter = poolList.find(sizetype);  //TODO: assert
+	//This currently operates under the assumption that the poolList
+	//for this sizetype has already been created
     Pool* pChunk = &(poolListIter->second);
 
     while(pChunk->next != NULL) pChunk = pChunk->next;
