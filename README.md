@@ -1,4 +1,4 @@
 cppmemorypool
 =============
 
-Creates a
+Creates a C++ memory pool system.
