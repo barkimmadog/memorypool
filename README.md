@@ -1,0 +1,4 @@
+cppmemorypool
+=============
+
+Creates a
